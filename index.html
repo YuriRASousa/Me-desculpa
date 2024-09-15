@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Desculpas Romântico</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffebef;
+            font-family: 'Cursive', sans-serif;
+            transition: background-color 1s;
+            overflow: hidden; /* Para manter os corações na tela */
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffb6c1;
+            transition: opacity 1s;
+            z-index: 1; /* Certifica-se de que a div principal fica em cima dos corações */
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.3em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Espaçamento entre os botões */
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #sim {
+            background-color: #ff69b4;
+            color: white;
+            box-shadow: 0 5px 10px rgba(255, 105, 180, 0.4);
+        }
+
+        #sim:hover {
+            background-color: #ff1493;
+            transform: scale(1.1);
+        }
+
+        #nao {
+            background-color: #ffc0cb;
+            color: white;
+            position: relative;
+            box-shadow: 0 5px 10px rgba(255, 182, 193, 0.4);
+        }
+
+        #nao:hover {
+            transform: scale(1.1);
+        }
+
+        /* Corações flutuantes */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            color: #ff69b4;
+            animation: float 3s infinite;
+            opacity: 0.8;
+            z-index: 0;
+        }
+
+        .heart:nth-child(1) {
+            top: 5%;
+            left: 5%;
+            animation-duration: 4s;
+        }
+
+        .heart:nth-child(2) {
+            top: 10%;
+            right: 5%;
+            animation-duration: 5s;
+        }
+
+        .heart:nth-child(3) {
+            bottom: 10%;
+            left: 40%;
+            animation-duration: 3s;
+        }
+
+        /* Nova tela */
+        #buque-tela {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: #ffebef;
+            z-index: 1;
+        }
+
+        #buque-tela img {
+            width: 300px;
+            max-width: 100%; /* Ajusta a imagem para se encaixar no container */
+            margin-top: 20px;
+        }
+
+        #buque-tela h1 {
+            color: #ff69b4;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #buque-tela p {
+            font-size: 1.3em;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.5em; /* Melhor espaçamento entre linhas */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="pedido">
+        <h1>Você me perdoa? </h1>
+        <p>Eu errei! Não consigo parar de pensar em você.</p>
+        <div class="button-container">
+            <button id="sim">Vou pensar no seu caso</button>
+            <button id="nao">Não</button>
+        </div>
+    </div>
+
+    <!-- Corações flutuantes para efeito romântico -->
+    <div class="heart">💖</div>
+    <div class="heart">💘</div>
+    <div class="heart">💞</div>
+
+    <!-- Nova tela de desculpas com buquê de flores -->
+    <div id="buque-tela">
+        <h1>Desculpa, amor!</h1>
+        <p>Eu sei que fui grosso, vou tomar mais cuidado, vc nao precisva ter escutado aquilo, foi puta infantilidade minha. Mas por favor me perdoa. <br> Você me chamando de Yuri é pior que qualquer coisa. <br> Realmente sinto muito. <br> Voce sabe o quanto eu gosto de voce e nao queria ti chatear, Perdoa o Yuyu</p>
+        <a href="https://www.youtube.com/watch?v=RGlbgq1HRZc" target="_blank">
+            <img src="img/foto 1.jpg" alt="Buquê de flores">
+        </a>
+        <p>Clica na imagem kk</p>
+    </div>
+
+    <script>
+        const btnSim = document.getElementById('sim');
+        const btnNao = document.getElementById('nao');
+        const pedidoDiv = document.getElementById('pedido');
+        const buqueTela = document.getElementById('buque-tela');
+
+        // Quando o botão "Sim" for clicado, troca de tela
+        btnSim.addEventListener('click', function() {
+            pedidoDiv.style.opacity = 0;
+            setTimeout(() => {
+                pedidoDiv.style.display = 'none';
+                buqueTela.style.display = 'block';
+            }, 1000);
+        });
+
+        // O botão "Não" continua fugindo
+        btnNao.addEventListener('mouseover', function() {
+            const x = Math.random() * window.innerWidth * 0.8;
+            const y = Math.random() * window.innerHeight * 0.8;
+            btnNao.style.left = x + 'px';
+            btnNao.style.top = y + 'px';
+        });
+    </script>
+
+</body>
+</html>
